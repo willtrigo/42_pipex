@@ -1,0 +1,11 @@
+*.swp
+*.o
+*.out
+*.d
+tovog/
+.vscode
+pipex
+pipex_bonus
+valgrind-out.txt
+*commands.json
+.cache/
