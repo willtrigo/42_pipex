@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 03:01:10 by dande-je          #+#    #+#              #
-#    Updated: 2024/03/15 03:34:21 by dande-je         ###   ########.fr        #
+#    Updated: 2024/03/16 03:27:23 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ RESET                           := \033[0m
 #******************************************************************************#
 
 SRCS_DIR                        := src/
+SRCS_INTERNAL_DIR               := src/internal/
 INCS                            := src/ lib/42_libft/include/
 BUILD_DIR                       := build/
 LIBFT_DIR                       := lib/42_libft/
@@ -54,7 +55,9 @@ LIBS                            := ./lib/42_libft/libft.a
 
 NAME                            = pipex
 
-SRCS_FILES                      += $(addprefix $(SRCS_DIR), ft_pipex.c)
+SRCS_FILES                      += $(addprefix $(SRCS_DIR), main.c)
+SRCS_FILES                      += $(addprefix $(SRCS_INTERNAL_DIR), ft_parse.c \
+	ft_utils.c)
 
 OBJS                            += $(SRCS_FILES:%.c=$(BUILD_DIR)%.o)
 

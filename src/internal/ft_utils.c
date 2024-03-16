@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pipex.c                                         :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 03:09:07 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/15 03:43:13 by dande-je         ###   ########.fr       */
+/*   Created: 2024/03/16 03:08:08 by dande-je          #+#    #+#             */
+/*   Updated: 2024/03/16 03:21:14 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
 #include "ft_non_standard/ft_non_standard.h"
 
-int	main(void)
+void	ft_handle_msg(char *process, char *msg, int fd, int exit_status)
 {
-	ft_putstr_fd("pipex", STDOUT_FILENO);
-	exit(EXIT_SUCCESS);
+	ft_putstr_fd(process, fd);
+	ft_putstr_fd(": ", fd);
+	ft_putendl_fd(msg, fd);
+	exit (exit_status);
 }
