@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:27:36 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/16 03:29:44 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/18 08:00:38 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ enum e_parse
 };
 
 void	ft_parse_arguments(int argc);
+char	**ft_parse_getenv(char **env);
 
 #endif

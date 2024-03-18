@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 03:01:10 by dande-je          #+#    #+#              #
-#    Updated: 2024/03/17 06:57:03 by dande-je         ###   ########.fr        #
+#    Updated: 2024/03/18 08:17:17 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,8 @@ LIBS                            := ./lib/42_libft/libft.a
 NAME                            = pipex
 
 SRCS_FILES                      += $(addprefix $(SRCS_DIR), main.c)
-SRCS_FILES                      += $(addprefix $(SRCS_INTERNAL_DIR), ft_parse.c \
+SRCS_FILES                      += $(addprefix $(SRCS_INTERNAL_DIR), ft_clean.c \
+	ft_parse.c \
 	ft_utils.c)
 
 OBJS                            += $(SRCS_FILES:%.c=$(BUILD_DIR)%.o)
@@ -104,7 +105,6 @@ define create_dir
 endef
 
 define submodule_update_libft
-	$(RM) $(LIBFT_DIR)
 	printf "$(PURPLE)Building library Libft\n$(RESET)"
 	git submodule update --init --recursive >/dev/null 2>&1 || true
 	git submodule foreach -q --recursive \
