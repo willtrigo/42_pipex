@@ -6,13 +6,15 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 08:14:21 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/19 18:50:25 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/21 00:51:46 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_CLEAN_H
 # define FT_CLEAN_H
 
-void	ft_clean_getenv(char **env);
+#include "internal/ft_pipex.h"
+
+void	ft_clean_pipex(t_pipex *data);
 
 #endif

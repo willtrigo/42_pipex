@@ -6,13 +6,23 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 08:14:49 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/19 19:11:35 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/21 00:51:15 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "internal/ft_pipex.h"
 
-void	ft_clean_getenv(char **env)
+static void	ft_clean_data(char **env);
+
+void	ft_clean_pipex(t_pipex *data)
+{
+	ft_clean_data(data->env);
+	ft_clean_data(data->left_cmd);
+	ft_clean_data(data->right_cmd);
+}
+
+static void	ft_clean_data(char **env)
 {
 	char **env_temp;
 
