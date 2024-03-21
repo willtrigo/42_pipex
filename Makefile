@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 03:01:10 by dande-je          #+#    #+#              #
-#    Updated: 2024/03/19 19:09:57 by dande-je         ###   ########.fr        #
+#    Updated: 2024/03/21 03:58:33 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS_FILES                      += $(addprefix $(SRCS_DIR), main.c)
 SRCS_FILES                      += $(addprefix $(SRCS_INTERNAL_DIR), ft_clean.c \
 	ft_parse.c \
 	ft_pipex.c \
+	ft_set.c \
 	ft_utils.c)
 
 OBJS                            += $(SRCS_FILES:%.c=$(BUILD_DIR)%.o)

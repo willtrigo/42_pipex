@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse.h                                         :+:      :+:    :+:   */
+/*   ft_set.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/16 02:27:36 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/21 01:13:54 by dande-je         ###   ########.fr       */
+/*   Created: 2024/03/21 03:54:37 by dande-je          #+#    #+#             */
+/*   Updated: 2024/03/21 05:06:39 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PARSE_H
-# define FT_PARSE_H
+#ifndef FT_SET_H
+# define FT_SET_H
 
-enum e_parse
+# include "ft_pipex.h"
+
+enum	e_pipex_environ
 {
-	EXPECT_ARGC = 5,
+	LEFT_ARG = 1,
+	RIGHT_ARG,
+	CMD_ARG = 0,
 };
 
-void	ft_parse_arguments(int argc);
-char	**ft_parse_getenv(char **env);
-char	*parse_path(char *exec_process, char **env);
+void	set_pipex_environ(int argc, char **argv, t_pipex *data);
 
 #endif
