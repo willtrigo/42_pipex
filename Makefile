@@ -6,7 +6,7 @@
 #    By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/15 03:01:10 by dande-je          #+#    #+#              #
-#    Updated: 2024/03/21 03:58:33 by dande-je         ###   ########.fr        #
+#    Updated: 2024/03/23 04:28:46 by dande-je         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ RESET                           := \033[0m
 
 SRCS_DIR                        := src/
 SRCS_INTERNAL_DIR               := src/internal/
+SRCS_HANDLE_DIR                 := src/internal/handle/
 INCS                            := src/ lib/42_libft/include/
 BUILD_DIR                       := build/
 LIBFT_DIR                       := lib/42_libft/
@@ -59,8 +60,8 @@ SRCS_FILES                      += $(addprefix $(SRCS_DIR), main.c)
 SRCS_FILES                      += $(addprefix $(SRCS_INTERNAL_DIR), ft_clean.c \
 	ft_parse.c \
 	ft_pipex.c \
-	ft_set.c \
-	ft_utils.c)
+	ft_set.c)
+SRCS_FILES                      += $(addprefix $(SRCS_HANDLE_DIR), ft_handle_exit.c)
 
 OBJS                            += $(SRCS_FILES:%.c=$(BUILD_DIR)%.o)
 
