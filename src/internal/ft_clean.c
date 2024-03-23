@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 08:14:49 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/22 07:48:34 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:18:08 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	ft_clean_fd(int *fd)
 	close(fd[OUTFILE]);
 }
 
-static void	ft_clean_data(char **env)
+static void	ft_clean_data(char **data)
 {
-	char	**env_temp;
+	char	**data_temp;
 
-	env_temp = env;
-	while (*env)
-		free(*env++);
-	free(env_temp);
+	data_temp = data;
+	while (*data)
+		free(*data++);
+	free(data_temp);
 }

@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 03:37:45 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/22 07:38:21 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/22 22:47:33 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ enum	e_default_pipex
 	CMD_NOT_FOUND = 127,
 	SIGINT_INTERRUPT = 130,
 	RW_R_R = 0644,
+	RANGE_STATUS = 0xff00,
+	BYTE = 8,
 };
 
 typedef struct s_ast	t_ast;
