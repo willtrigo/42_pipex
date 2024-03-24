@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 03:37:45 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/22 22:47:33 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/24 08:56:55 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ struct s_pipex
 	int		outfile_open;
 };
 
-void	ft_pipex(int agrc, char **argv);
+int	ft_pipex(int agrc, char **argv);
 
 #endif

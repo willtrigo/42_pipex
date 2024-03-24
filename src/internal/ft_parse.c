@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:25:03 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/24 04:37:27 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/24 10:54:35 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,21 @@ char	*parse_path(char *exec_process, char **env)
 {
 	char	*path;
 
-	if (access(exec_process, F_OK | X_OK) == DEFAULT)
+	if (access(exec_process, F_OK) == DEFAULT)
 		return (exec_process);
+	if (*exec_process == '.')
+	{
+		if (access(exec_process, F_OK) == DEFAULT)
+			return (exec_process);
+		else
+			return (NULL);
+	}
 	while (*env)
 	{
 		ft_sprintf(&path, "%s/%s", *env++, exec_process);
-		if (!access(path, F_OK | X_OK))
+		if (!access(path, F_OK))
 			return (path);
 		free(path);
 	}
-	return (exec_process);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 05:35:12 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/24 05:52:43 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/24 10:45:06 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,22 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include "ft_non_standard/ft_sprintf.h"
+#include "ft_string.h"
 #include "ft_default.h"
 #include "internal/handle/ft_handle_fork.h"
+#include "internal/ft_pipex.h"
 #include "internal/handle/ft_handle_exit.h"
 #include "internal/ft_set.h"
-#include "internal/ft_parse.h"
 #include "internal/ft_clean.h"
+
+static void	ft_handle_open_pipe(t_pipex *data, int *fd);
+static void	ft_handle_child(int *fd, int child, t_pipex *data);
+static void	ft_handle_open(int *fd, int child, t_pipex *data);
+static void	ft_handle_command(t_pipex *data, char **cmd, int *fd, int child);
 
 void	ft_handle_fork(t_pipex *data, int *fd, pid_t *pid)
 {
+	ft_handle_open_pipe(data, fd);
 	pid[INFILE] = fork();
 	if (pid[INFILE] <= FAIL)
 	{
@@ -47,29 +53,38 @@ void	ft_handle_fork(t_pipex *data, int *fd, pid_t *pid)
 	waitpid(pid[OUTFILE], &fd[OUTFILE], WUNTRACED);
 }
 
-void	ft_handle_child(int *fd, int child, t_pipex *data)
+static void	ft_handle_open_pipe(t_pipex *data, int *fd)
+{
+	if (pipe(fd) == FAIL)
+	{
+		ft_handle_msg("pipe", strerror(errno), STDERR_FILENO);
+		ft_handle_exit(data, fd, SIGINT_INTERRUPT);
+	}
+}
+
+static void	ft_handle_child(int *fd, int child, t_pipex *data)
 {
 	if (child == INFILE)
 	{
 		ft_handle_open(fd, child, data);
 		dup2(data->infile_open, STDIN_FILENO);
-		dup2(fd[1], STDOUT_FILENO);
+		dup2(fd[OUTFILE], STDOUT_FILENO);
 		ft_clean_fd(fd);
 		ft_set_cmd(data, &*data->left_cmd);
-		ft_handle_command(data, data->left_cmd, fd);
+		ft_handle_command(data, data->left_cmd, fd, INFILE);
 	}
 	else
 	{
 		ft_handle_open(fd, child, data);
 		dup2(data->outfile_open, STDOUT_FILENO);
-		dup2(fd[0], STDIN_FILENO);
+		dup2(fd[INFILE], STDIN_FILENO);
 		ft_clean_fd(fd);
 		ft_set_cmd(data, &*data->right_cmd);
-		ft_handle_command(data, data->right_cmd, fd);
+		ft_handle_command(data, data->right_cmd, fd, OUTFILE);
 	}
 }
 
-void	ft_handle_open(int *fd, int child, t_pipex *data)
+static void	ft_handle_open(int *fd, int child, t_pipex *data)
 {
 	if (child == INFILE)
 	{
@@ -89,27 +104,29 @@ void	ft_handle_open(int *fd, int child, t_pipex *data)
 		{
 			ft_clean_fd(fd);
 			ft_handle_msg(data->outfile, strerror(errno), STDERR_FILENO);
-			ft_handle_exit(data, fd, EXIT_FAILURE);
+			ft_handle_exit(data, fd, EACCES);
 		}
 	}
 }
 
-void	ft_handle_command(t_pipex *data, char **cmd, int *fd)
+static void	ft_handle_command(t_pipex *data, char **cmd, int *fd, int child)
 {
-	char	*bin;
-	char	*exec;
-
-	bin = parse_path(*cmd, data->env);
-	if (access(bin, F_OK | X_OK) == DEFAULT)
+	if (ft_strncmp(data->cmd, "(null)", ft_strlen("(null)")))
 	{
-		ft_sprintf(&exec, "%s", bin);
-		execve(exec, cmd, data->env);
-		ft_handle_msg(data->cmd, strerror(errno), STDERR_FILENO);
+		execve(data->cmd, cmd, data->env);
+		ft_handle_msg(*cmd, strerror(errno), STDERR_FILENO);
 		ft_handle_exit(data, fd, errno);
 	}
 	else
 	{
-		ft_handle_msg(bin, "command not found", STDERR_FILENO);
+		ft_handle_msg(*cmd, "command not found", STDERR_FILENO);
+		if (child == INFILE)
+			close(data->infile_open);
+		else if (child == OUTFILE)
+			close(data->outfile_open);
+		close(INFILE);
+		close(OUTFILE);
+		free(data->cmd);
 		ft_handle_exit(data, fd, CMD_NOT_FOUND);
 	}
 }
