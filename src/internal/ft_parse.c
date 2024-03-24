@@ -6,10 +6,11 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 02:25:03 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/24 10:54:35 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/24 14:17:07 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "ft_parse.h"
@@ -48,6 +49,8 @@ char	*parse_path(char *exec_process, char **env)
 {
 	char	*path;
 
+	if (access(exec_process, X_OK | F_OK) == DEFAULT)
+		return ("is_diretory");
 	if (access(exec_process, F_OK) == DEFAULT)
 		return (exec_process);
 	if (*exec_process == '.')

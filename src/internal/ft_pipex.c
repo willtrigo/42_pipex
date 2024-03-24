@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 03:09:07 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/24 10:39:53 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/24 13:31:27 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "internal/ft_set.h"
 #include "internal/handle/ft_handle_fork.h"
 #include "internal/ft_clean.h"
-
 
 int	ft_pipex(int argc, char **argv)
 {
@@ -30,4 +29,3 @@ int	ft_pipex(int argc, char **argv)
 	ft_clean_pipex(&data);
 	return (((fd[OUTFILE]) & RANGE_STATUS) >> BYTE);
 }
-

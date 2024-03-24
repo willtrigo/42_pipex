@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 05:35:12 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/24 10:45:06 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/24 13:34:09 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ static void	ft_handle_open(int *fd, int child, t_pipex *data)
 
 static void	ft_handle_command(t_pipex *data, char **cmd, int *fd, int child)
 {
-	if (ft_strncmp(data->cmd, "(null)", ft_strlen("(null)")))
+	if (ft_strncmp(data->cmd, "(null)", ft_strlen("(null)")) \
+		&& ft_strncmp(data->cmd, "is_diretory", ft_strlen("is_diretory")))
 	{
 		execve(data->cmd, cmd, data->env);
 		ft_handle_msg(*cmd, strerror(errno), STDERR_FILENO);
@@ -119,13 +120,16 @@ static void	ft_handle_command(t_pipex *data, char **cmd, int *fd, int child)
 	}
 	else
 	{
-		ft_handle_msg(*cmd, "command not found", STDERR_FILENO);
 		if (child == INFILE)
 			close(data->infile_open);
 		else if (child == OUTFILE)
 			close(data->outfile_open);
 		close(INFILE);
 		close(OUTFILE);
+		if (!ft_strncmp(data->cmd, "is_diretory", ft_strlen("is_diretory")))
+			ft_handle_msg(*cmd, "Is a diretory", STDERR_FILENO);
+		else
+			ft_handle_msg(*cmd, "command not found", STDERR_FILENO);
 		free(data->cmd);
 		ft_handle_exit(data, fd, CMD_NOT_FOUND);
 	}
