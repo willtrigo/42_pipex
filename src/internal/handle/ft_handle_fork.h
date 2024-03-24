@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_exit.h                                   :+:      :+:    :+:   */
+/*   ft_handle_fork.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/16 03:08:22 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/24 05:47:35 by dande-je         ###   ########.fr       */
+/*   Created: 2024/03/24 05:35:06 by dande-je          #+#    #+#             */
+/*   Updated: 2024/03/24 05:53:08 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_HANDLE_EXIT_H
-# define FT_HANDLE_EXIT_H
+#ifndef FT_HANDLE_FORK_H
+# define FT_HANDLE_FORK_H
 
+# include <sys/types.h>
 # include "internal/ft_pipex.h"
 
-void	ft_handle_msg(char *process, char *msg, int fd);
-void	ft_handle_exit(t_pipex *data, int *fd, int exit_status);
+void	ft_handle_fork(t_pipex *data, int *fd, pid_t *pid);
+void	ft_handle_child(int *fd, int child, t_pipex *data);
+void	ft_handle_open(int *fd, int child, t_pipex *data);
+void	ft_handle_command(t_pipex *data, char **cmd, int *fd);
 
 #endif
