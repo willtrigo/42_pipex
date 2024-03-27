@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:46:45 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/27 07:47:35 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/27 08:05:01 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_handle_command(t_pipex *data, char **cmd, int *fd, int child)
 		close(valid_fd_folder);
 		ft_handle_command_fd(data, child);
 		ft_handle_msg(data->cmd, "Is a directory", STDERR_FILENO);
+		free(data->cmd);
 		ft_handle_exit(data, fd, EACCES_STATUS);
 	}
 	execve(data->cmd, cmd, data->env);
