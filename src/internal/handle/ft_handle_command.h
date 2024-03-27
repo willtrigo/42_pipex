@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set.h                                           :+:      :+:    :+:   */
+/*   ft_handle_command.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 03:54:37 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/26 04:29:42 by dande-je         ###   ########.fr       */
+/*   Created: 2024/03/25 12:46:39 by dande-je          #+#    #+#             */
+/*   Updated: 2024/03/25 12:48:46 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SET_H
-# define FT_SET_H
+#ifndef FT_HANDLE_COMMAND_H
+# define FT_HANDLE_COMMAND_H
 
-# include "ft_pipex.h"
+# include "internal/ft_pipex.h"
 
-enum	e_pipex_environ
-{
-	LEFT_ARG = 1,
-	RIGHT_ARG,
-};
-
-void	ft_set_pipex_environ(int argc, char **argv, t_pipex *data);
-void	ft_set_cmd(t_pipex *data, char **cmd);
+void	ft_handle_command(t_pipex *data, char **cmd, int *fd, int child);
 
 #endif

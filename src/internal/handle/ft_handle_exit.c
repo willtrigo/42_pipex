@@ -6,18 +6,18 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 03:08:08 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/24 13:55:24 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/26 03:39:23 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "internal/handle/ft_handle_exit.h"
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "ft_non_standard/ft_sprintf.h"
 #include "ft_string.h"
-#include "internal/ft_clean.h"
+#include "internal/handle/ft_handle_exit.h"
 #include "internal/ft_pipex.h"
+#include "internal/ft_clean.h"
 
 void	ft_handle_msg(char *process, char *msg, int fd)
 {

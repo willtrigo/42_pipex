@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 03:55:01 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/24 13:39:57 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/26 04:29:33 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_set_cmd(t_pipex *data, char **cmd)
 {
 	char	*bin;
 
-	bin = parse_path(*cmd, data->env);
+	bin = ft_parse_path(*cmd, data->env);
 	ft_sprintf(&data->cmd, "%s", bin);
 	if (!bin)
 		free(bin);
