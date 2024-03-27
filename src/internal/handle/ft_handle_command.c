@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:46:45 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/27 08:05:01 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/03/27 08:53:40 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ static void	ft_handle_command_fd(t_pipex *data, int child)
 
 static void	ft_handle_commmand_exit_code(t_pipex *data, char **cmd, int *fd)
 {
-	char	*check_bar;
+	char	*parse_bar;
 
-	check_bar = ft_strrchr(*cmd, '/');
+	parse_bar = ft_strrchr(*cmd, '/');
 	if ((access(*cmd, R_OK | W_OK) == FAIL) && !access(*cmd, F_OK))
 	{
 		ft_handle_msg(*cmd, "Permission denied", STDERR_FILENO);
@@ -66,12 +66,12 @@ static void	ft_handle_commmand_exit_code(t_pipex *data, char **cmd, int *fd)
 	}
 	else if (!(**cmd == '/' || **cmd == '.'))
 	{
-		if (check_bar)
+		if (parse_bar)
 			ft_handle_msg(*cmd, strerror(errno), STDERR_FILENO);
 		else
 		{
 			ft_handle_msg(*cmd, "command not found", STDERR_FILENO);
-			free(check_bar);
+			free(parse_bar);
 		}
 		free(data->cmd);
 		ft_handle_exit(data, fd, ENOENT_STATUS);
