@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_set.h                                           :+:      :+:    :+:   */
+/*   ft_ast.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 03:54:37 by dande-je          #+#    #+#             */
-/*   Updated: 2024/04/02 21:49:28 by dande-je         ###   ########.fr       */
+/*   Created: 2024/04/03 20:09:17 by dande-je          #+#    #+#             */
+/*   Updated: 2024/04/03 20:16:40 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SET_H
-# define FT_SET_H
+#include <stdlib.h>
+#include "ft_stdlib.h"
+#include "ft_default.h"
+#include "internal/ast/ft_ast.h"
+#include "internal/ft_pipex.h"
 
-# include "ft_pipex.h"
-
-enum	e_pipex_environ
+t_ast	*ft_astnew(t_pipex *data)
 {
-	LEFT_ARG = 1,
-	RIGHT_ARG,
-};
+	t_ast	*astnew;
 
-void	ft_set_pipex_environ(int argc, char **argv, t_pipex *data);
-void	ft_set_cmd_path(t_pipex *data, char **cmd);
-
-#endif
+	astnew = ft_calloc(CHAR_BYTE, sizeof(t_ast));
+	if (!astnew)
+	{
+		(void)data;
+		exit(EXIT_FAILURE);
+	}
+	return (astnew);
+}

@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:46:45 by dande-je          #+#    #+#             */
-/*   Updated: 2024/03/27 08:53:40 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:31:48 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_handle_command(t_pipex *data, char **cmd, int *fd, int child)
 {
 	int		valid_fd_folder;
 
-	ft_set_cmd(data, cmd);
+	ft_set_cmd_path(data, cmd);
 	valid_fd_folder = open(data->cmd, O_DIRECTORY | O_RDONLY, RW_R_R);
 	if (valid_fd_folder != FAIL)
 	{
