@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:06:26 by dande-je          #+#    #+#             */
-/*   Updated: 2024/04/03 20:08:29 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/04/13 11:53:13 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ struct s_ast
 		t_heredoc	heredoc;
 		int			open;
 	} u_data;
-	/* t_ast		*next; */
 };
 
 #endif

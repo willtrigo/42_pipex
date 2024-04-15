@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 20:09:17 by dande-je          #+#    #+#             */
-/*   Updated: 2024/04/03 20:16:40 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/04/13 12:35:07 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,61 @@
 #include "internal/ast/ft_ast.h"
 #include "internal/ft_pipex.h"
 
-t_ast	*ft_astnew(t_pipex *data)
+t_ast	*ft_ast_constructor(t_pipex *data)
 {
-	t_ast	*astnew;
+	t_ast	*ast_root;
 
-	astnew = ft_calloc(CHAR_BYTE, sizeof(t_ast));
-	if (!astnew)
+	ast_root = ft_calloc(CHAR_BYTE, sizeof(t_ast));
+	if (!ast_root)
 	{
 		(void)data;
 		exit(EXIT_FAILURE);
 	}
-	return (astnew);
+	return (ast_root);
 }
+
+// static void	ft_set_ast_params(int argc, char **argv, t_pipex *data, \
+// 				int param_size)
+// {
+// 	t_ast	*set_ast_params;
+//
+// 	set_ast_params = ft_calloc(CHAR_BYTE, sizeof(t_ast));
+// 	if (!set_ast_params)
+// 	{
+// 		exit(EXIT_FAILURE);
+// 	}
+// 	ft_build_ast(argc, argv, set_ast_params, param_size);
+// 	data->ast_params = set_ast_params;
+//
+// }
+//
+// static void	ft_build_ast(int argc, char **argv, t_ast *ast, int params_size)
+// {
+// 	if (argc == params_size)
+// 	{
+//
+// 	}
+// }
+//
+// static void	ft_set_ast_params(int argc, char **argv, t_pipex *data, \
+// 				int param_size)
+// {
+// 	t_ast	*set_ast_params;
+//
+// 	set_ast_params = ft_calloc(CHAR_BYTE, sizeof(t_ast));
+// 	if (!set_ast_params)
+// 	{
+// 		exit(EXIT_FAILURE);
+// 	}
+// 	ft_build_ast(argc, argv, set_ast_params, param_size);
+// 	data->ast_params = set_ast_params;
+//
+// }
+//
+// static void	ft_build_ast(int argc, char **argv, t_ast *ast, int params_size)
+// {
+// 	if (argc == params_size)
+// 	{
+//
+// 	}
+// }
