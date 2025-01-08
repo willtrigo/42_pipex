@@ -6,7 +6,7 @@
 /*   By: dande-je <dande-je@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 03:55:01 by dande-je          #+#    #+#             */
-/*   Updated: 2024/04/13 12:21:48 by dande-je         ###   ########.fr       */
+/*   Updated: 2024/09/17 23:42:19 by dande-je         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 #include "ft_pipex.h"
 #include "ft_parse.h"
 
-static void	ft_set_ast_params(int argc, char **argv, t_pipex *data, \
-				int param_size);
-static void	ft_build_ast(int argc, char **argv, t_ast *ast, int params_size);
+// static void	ft_set_ast_params(int argc, char **argv, t_pipex *data, \
+// 				int param_size);
+// static void	ft_build_ast(int argc, char **argv, t_ast *ast, int params_size);
 
 void	ft_set_pipex_environ(int argc, char **argv, t_pipex *data)
 {
 	data->env = ft_parse_getenv(__environ);
-	ft_set_ast_params(argc, argv, data, argc);
+	// ft_set_ast_params(argc, argv, data, argc);
 	data->left_cmd = ft_split(argv[LEFT_ARG], ' ');
 	data->right_cmd = ft_split(argv[RIGHT_ARG], ' ');
 	data->infile = *argv;
